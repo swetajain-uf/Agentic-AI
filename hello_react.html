@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple React Layout with arg1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f7f8fa; }
+    .header { background: #2d72d9; color: #fff; padding: 20px; text-align: center; font-size: 2em; }
+    .container { display: flex; min-height: 70vh; }
+    .leftbar { background: #e3e9f6; width: 200px; padding: 20px; font-size: 1.1em; }
+    .main { flex: 1; padding: 20px; background: #fff; }
+    .footer { background: #222; color: #fff; padding: 15px; text-align: center; font-size: 1em; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function Header() {
+      return <div className="header">Header</div>;
+    }
+
+    function Leftbar() {
+      return (
+        <div className="leftbar">
+          <ul>
+            <li>Menu 1</li>
+            <li>Menu 2</li>
+            <li>Menu 3</li>
+          </ul>
+        </div>
+      );
+    }
+
+    function Main() {
+      // Read 'arg1' from the URL query parameters
+      const params = new URLSearchParams(window.location.search);
+      const arg1 = params.get('arg1');
+      return (
+        <div className="main">
+          <h2>Main Section</h2>
+          <p>
+            {arg1 ? (
+              <>Argument <b>arg1</b> value: <b>{arg1}</b></>
+            ) : (
+              <>There is no argument</>
+            )}
+          </p>
+        </div>
+      );
+    }
+
+    function Footer() {
+      return <div className="footer">Footer © 2025</div>;
+    }
+
+    function App() {
+      return (
+        <>
+          <Header />
+          <div className="container">
+            <Leftbar />
+            <Main />
+          </div>
+          <Footer />
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

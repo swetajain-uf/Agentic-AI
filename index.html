@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agentic Chat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Agentic Chat Assistant</h1>
+    <form method="post">
+      <textarea name="prompt" rows="4" placeholder="Ask me about competitive advantage, technology, or innovation..." required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    {% if response %}
+      <div class="response-box">
+        <h2>Response:</h2>
+        <pre>{{ response }}</pre>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
